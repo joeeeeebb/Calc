@@ -2,7 +2,6 @@ const calculator = document.querySelector('.calculator');
 const keys = calculator.querySelector('.calculator__keys');
 const display = calculator.querySelector('.calculator__display');
 
-
 const calculate = (n1, operator, n2) => {
   const num1 = parseFloat(n1);
   const num2 = parseFloat(n2);
@@ -22,10 +21,8 @@ keys.addEventListener('click', e => {
   const displayedNum = display.textContent;
   const previousKeyType = calculator.dataset.previousKeyType;
 
- 
   Array.from(key.parentNode.children).forEach(k => k.classList.remove('is-depressed'));
 
-  // Numbers 
   if (!action) {
     if (displayedNum === '0' || previousKeyType === 'operator') {
       display.textContent = keyContent; 
@@ -35,7 +32,6 @@ keys.addEventListener('click', e => {
     calculator.dataset.previousKeyType = 'number';
   }
 
-  // Decimal 
   if (action === 'decimal') {
     if (previousKeyType === 'operator') {
       display.textContent = '0.';
@@ -45,7 +41,6 @@ keys.addEventListener('click', e => {
     calculator.dataset.previousKeyType = 'decimal';
   }
 
-  // Math 
   if (
     action === 'add' ||
     action === 'subtract' ||
@@ -58,7 +53,6 @@ keys.addEventListener('click', e => {
     calculator.dataset.operator = action;         
   }
 
-  // Equal Key
   if (action === 'calculate') {
     const firstValue = calculator.dataset.firstValue;
     const operator = calculator.dataset.operator;
@@ -70,7 +64,6 @@ keys.addEventListener('click', e => {
     calculator.dataset.previousKeyType = 'calculate';
   }
 
-  // AC Button 
   if (action === 'clear') {
     display.textContent = '0';
     delete calculator.dataset.firstValue;
